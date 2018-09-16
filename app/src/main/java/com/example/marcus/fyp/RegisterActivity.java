@@ -67,4 +67,8 @@ public class RegisterActivity extends AppCompatActivity {
 
 
     }
+    public void jumpToSelectDoor(View view){
+        Intent goToSetting = new Intent(this, MainActivity.class);
+        startActivity(goToSetting);
+    }
 }

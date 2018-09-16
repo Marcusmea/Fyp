@@ -38,14 +38,14 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    public void jumpToSetting(View view){
-        Intent goToSetting = new Intent(this, RegisterActivity.class);
-        startActivity(goToSetting);
+    public void jumpToRegister(View view){
+        Intent goToRegister = new Intent(this, RegisterActivity.class);
+        startActivity(goToRegister);
 
     }
     public void jumpToHome(View view){
-        Intent goToSetting = new Intent(this, HomePageActivity.class);
-        startActivity(goToSetting);
+        Intent goToHome = new Intent(this, HomePageActivity.class);
+        startActivity(goToHome);
     }
 
 
