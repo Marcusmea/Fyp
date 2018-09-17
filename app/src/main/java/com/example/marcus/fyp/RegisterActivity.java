@@ -9,10 +9,18 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.marcus.fyp.Model.User;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.rengwuxian.materialedittext.MaterialEditText;
+
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private EditText uname, userid, userpassword, cpassword ,useremail;
+    private EditText uname, userid, userpassword, etPhone ,useremail;
             private Button regButton;
             private TextView userlogin;
 
@@ -21,9 +29,6 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         setupUIViews();
-
-
-
 
 
        /* final EditText etName = (EditText) findViewById(R.id.etName);
@@ -35,27 +40,48 @@ public class RegisterActivity extends AppCompatActivity {
        */
     }
        private void setupUIViews(){
-           uname= (EditText) findViewById(R.id.etName);
+
            userid =(EditText) findViewById(R.id.etUserID);
            userpassword=(EditText) findViewById(R.id.etPassword);
-           cpassword=(EditText) findViewById(R.id.etCPassword);
+           etPhone= (MaterialEditText)findViewById(R.id.etPhone);
            useremail=(EditText) findViewById(R.id.etEmail);
-           regButton= (Button) findViewById(R.id.bRegister);
+           regButton= (Button) findViewById(R.id.btnRegister);
            userlogin=(TextView) findViewById(R.id.tvUserLogin);
 
+           final FirebaseDatabase database=FirebaseDatabase.getInstance();
+           final DatabaseReference table_user = database.getReference("User");
+
+           regButton.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View v) {
+                   table_user.addValueEventListener(new ValueEventListener() {
+                       @Override
+                       public void onDataChange(DataSnapshot dataSnapshot) {
+                           //get user
+                           User user = new User(userid.getText().toString(),userpassword.getText().toString());
+                           table_user.child(etPhone.getText().toString()).setValue(user);
+                           Toast.makeText(RegisterActivity.this, "Register Successfully !", Toast.LENGTH_SHORT).show();
+                           finish();
+                       }
+
+                       @Override
+                       public void onCancelled(DatabaseError databaseError) {
+
+                       }
+                   });
+
+               }
+           });
+
+
         }
-
-    public void jumpToSetting(View view){
-        Intent goToSetting = new Intent(this, LoginActivity.class);
-        startActivity(goToSetting);
-    }
-
+      /*
        private Boolean validate(){
         Boolean result = false;
         String name = uname.getText().toString();
         String uid = userid.getText().toString();
         String passwordd = userpassword.getText().toString();
-        String confirmpassword=cpassword.getText().toString();
+
         String email=useremail.getText().toString();
 
         if(name.isEmpty()&& uid.isEmpty() && passwordd.isEmpty() && confirmpassword.isEmpty() && email.isEmpty()){
@@ -66,9 +92,14 @@ public class RegisterActivity extends AppCompatActivity {
             return result;
 
 
-    }
-    public void jumpToSelectDoor(View view){
+    } */
+
+    public void jumpTo(View view){
         Intent goToSetting = new Intent(this, MainActivity.class);
         startActivity(goToSetting);
+    }
+    public void jumpToLogin(View view){
+        Intent goToLogin = new Intent(this, LoginActivity.class);
+        startActivity(goToLogin);
     }
 }

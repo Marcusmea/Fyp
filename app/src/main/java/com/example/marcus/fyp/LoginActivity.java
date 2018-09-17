@@ -54,10 +54,8 @@ public class LoginActivity extends AppCompatActivity {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         //Get user information
                         User user= dataSnapshot.child(etPhone.getText().toString()).getValue(User.class);
-                        if(user.getPassword().equals(userpassword.getText().toString()))
-                        {
-                            Toast.makeText(LoginActivity.this,"Sign in successfully!",Toast.LENGTH_SHORT).show();
-                            
+                        if(user.getPassword().equals(userpassword.getText().toString())) {
+                            Toast.makeText(LoginActivity.this, "Sign in successfully!", Toast.LENGTH_SHORT).show();
                         }
                         else
                         {
@@ -87,8 +85,6 @@ public class LoginActivity extends AppCompatActivity {
         Intent goToRegister = new Intent(this,RegisterActivity.class);
         startActivity(goToRegister);
     }
-
-
 
 
 }
