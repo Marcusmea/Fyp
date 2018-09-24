@@ -3,14 +3,24 @@ package com.example.marcus.fyp.Model;
 public class User {
     private String Name;
     private String Password;
+    private String PhoneNumber;
 
 
     public User() {
     }
 
-    public User(String name, String password) {
+    public User(String name, String password, String phoneNumber) {
         Name = name;
         Password = password;
+        PhoneNumber=phoneNumber;
+    }
+
+    public String getPhoneNumber() {
+        return PhoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        PhoneNumber = phoneNumber;
     }
 
     public String getName() {

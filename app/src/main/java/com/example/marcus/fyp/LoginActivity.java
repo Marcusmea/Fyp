@@ -52,14 +52,19 @@ public class LoginActivity extends AppCompatActivity {
                 table_user.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        //Get user information
-                        User user= dataSnapshot.child(etPhone.getText().toString()).getValue(User.class);
-                        if(user.getPassword().equals(userpassword.getText().toString())) {
-                            Toast.makeText(LoginActivity.this, "Sign in successfully!", Toast.LENGTH_SHORT).show();
-                        }
-                        else
-                        {
-                            Toast.makeText(LoginActivity.this,"You have entered wrong password!! ",Toast.LENGTH_SHORT).show();
+                        if(dataSnapshot.child(userid.getText().toString()).exists()) {
+
+                            //Get user information
+                            User user = dataSnapshot.child(userid.getText().toString()).getValue(User.class);
+                            if (user.getPassword().equals(userpassword.getText().toString())) {
+                                Intent goToHome = new Intent(LoginActivity.this, HomePageActivity.class);
+                                startActivity(goToHome);
+                                Toast.makeText(LoginActivity.this, "Sign in successfully!", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(LoginActivity.this, "You have entered wrong password!! ", Toast.LENGTH_SHORT).show();
+                            }
+                        }else{
+                            Toast.makeText(LoginActivity.this, "User do not exist!", Toast.LENGTH_SHORT).show();
                         }
 
                     }

@@ -20,7 +20,7 @@ import com.rengwuxian.materialedittext.MaterialEditText;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private EditText uname, userid, userpassword, etPhone ,useremail;
+    private EditText userid, userpassword, etPhone ,useremail;
             private Button regButton;
             private TextView userlogin;
 
@@ -57,11 +57,16 @@ public class RegisterActivity extends AppCompatActivity {
                    table_user.addValueEventListener(new ValueEventListener() {
                        @Override
                        public void onDataChange(DataSnapshot dataSnapshot) {
+                           if (dataSnapshot.child(userid.getText().toString()).exists()) {
+                               Toast.makeText(RegisterActivity.this, "User already registered!", Toast.LENGTH_SHORT).show();
+                           }
                            //get user
-                           User user = new User(userid.getText().toString(),userpassword.getText().toString());
-                           table_user.child(etPhone.getText().toString()).setValue(user);
-                           Toast.makeText(RegisterActivity.this, "Register Successfully !", Toast.LENGTH_SHORT).show();
-                           finish();
+                           else {
+                               User user = new User(useremail.getText().toString(), userpassword.getText().toString(),etPhone.getText().toString());
+                               table_user.child(userid.getText().toString()).setValue(user);
+                               Toast.makeText(RegisterActivity.this, "Register Successfully !", Toast.LENGTH_SHORT).show();
+                               finish();
+                           }
                        }
 
                        @Override
@@ -94,10 +99,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     } */
 
-    public void jumpTo(View view){
-        Intent goToSetting = new Intent(this, MainActivity.class);
-        startActivity(goToSetting);
-    }
+
     public void jumpToLogin(View view){
         Intent goToLogin = new Intent(this, LoginActivity.class);
         startActivity(goToLogin);
