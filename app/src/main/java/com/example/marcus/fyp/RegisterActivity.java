@@ -41,10 +41,10 @@ public class RegisterActivity extends AppCompatActivity {
     }
        private void setupUIViews(){
 
-           userid =(EditText) findViewById(R.id.etUserID);
-           userpassword=(EditText) findViewById(R.id.etPassword);
+           userid =(MaterialEditText) findViewById(R.id.etUserID);
+           userpassword=(MaterialEditText) findViewById(R.id.etPassword);
            etPhone= (MaterialEditText)findViewById(R.id.etPhone);
-           useremail=(EditText) findViewById(R.id.etEmail);
+           useremail=(MaterialEditText) findViewById(R.id.etEmail);
            regButton= (Button) findViewById(R.id.btnRegister);
            userlogin=(TextView) findViewById(R.id.tvUserLogin);
 

@@ -59,7 +59,7 @@ public class LoginActivity extends AppCompatActivity {
                             if (user.getPassword().equals(userpassword.getText().toString())) {
                                 Intent goToHome = new Intent(LoginActivity.this, HomePageActivity.class);
                                 startActivity(goToHome);
-                                Toast.makeText(LoginActivity.this, "Sign in successfully!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginActivity.this, "Log in successfully!", Toast.LENGTH_SHORT).show();
                             } else {
                                 Toast.makeText(LoginActivity.this, "You have entered wrong password!! ", Toast.LENGTH_SHORT).show();
                             }
