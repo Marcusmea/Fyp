@@ -78,7 +78,14 @@ public class RegisterActivity extends AppCompatActivity {
                }
            });
 
-
+       /*    userpassword.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+               @Override
+               public void onFocusChange(View v, boolean hasFocus) {
+                   if(userpassword.getText().length()<5){
+                       userpassword.setError(" Password at least 5 numbers");
+                   }
+               }
+           }); */
         }
       /*
        private Boolean validate(){
