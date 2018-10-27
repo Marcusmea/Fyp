@@ -11,7 +11,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 public class HomePageActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -24,6 +23,7 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
+
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         mToggle = new ActionBarDrawerToggle(this, drawer, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -33,6 +33,14 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
         mToggle.syncState();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+        Fragment fragment= new SelectDoorFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction ft= fragmentManager.beginTransaction();
+        ft.add(R.id.fragment_container, fragment);
+
+        ft.commit();
     }
 
 
@@ -43,9 +51,11 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
         int id= item.getItemId();
 
         if(id ==R.id.nav_selectdoor) {
-            fragment = new MessageFragment();
+            fragment = new SelectDoorFragment();
         } else if (id == R.id.nav_profile){
             fragment = new ProfileFragment();
+        } else if (id == R.id.nav_contactus){
+            fragment= new ContactusFragment();
         }
 
         if(fragment != null){

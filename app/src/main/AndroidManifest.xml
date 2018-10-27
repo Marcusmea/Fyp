@@ -20,7 +20,12 @@
         <activity android:name=".HomePageActivity" />
         <activity android:name=".SelectDoor" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".FrontDoorActivity" />
+        <activity android:name=".MasterRoomActivity" />
+        <activity android:name=".BedDoor1Activity" />
+        <activity android:name=".BedDoor2Activity" />
+        <activity android:name=".MainDoor"></activity>
     </application>
 
 </manifest>

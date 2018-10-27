@@ -19,21 +19,21 @@
             android:id="@+id/textView4"
             android:layout_width="192dp"
             android:layout_height="56dp"
-            android:layout_marginEnd="50dp"
-            android:layout_marginLeft="4dp"
             android:layout_marginStart="100dp"
+            android:layout_marginLeft="4dp"
             android:layout_marginTop="40dp"
+            android:layout_marginEnd="50dp"
             android:text="Select Door"
             android:textAlignment="center"
             android:textSize="36sp" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/frontdoor"
             android:layout_width="139dp"
             android:layout_height="54dp"
-            android:layout_marginEnd="50dp"
             android:layout_marginStart="120dp"
             android:layout_marginTop="30dp"
+            android:layout_marginEnd="50dp"
             android:text="Front Door"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.446"
@@ -41,43 +41,43 @@
             app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/masterroom"
             android:layout_width="134dp"
             android:layout_height="46dp"
             android:layout_marginEnd="50dp"
             android:layout_marginStart="120dp"
             android:layout_marginTop="30dp"
-            android:text="Back Door"
+            android:text="Master Room"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.439"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button" />
+            app:layout_constraintTop_toBottomOf="@+id/frontdoor" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/bedroomdoor1"
             android:layout_width="135dp"
             android:layout_height="47dp"
-            android:layout_marginEnd="50dp"
             android:layout_marginStart="120dp"
             android:layout_marginTop="30dp"
-            android:text="Master Room"
+            android:layout_marginEnd="50dp"
+            android:text="BedRoom door 1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.44"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button2" />
+            app:layout_constraintTop_toBottomOf="@+id/backdoor" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/bedroomdoor2"
             android:layout_width="138dp"
             android:layout_height="46dp"
-            android:layout_marginEnd="50dp"
             android:layout_marginStart="120dp"
             android:layout_marginTop="30dp"
-            android:text="Button"
+            android:layout_marginEnd="50dp"
+            android:text="BedRoom Door 2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.444"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button3" />
+            app:layout_constraintTop_toBottomOf="@+id/masterroom" />
 
         <FrameLayout
             android:id="@+id/fragment_container"

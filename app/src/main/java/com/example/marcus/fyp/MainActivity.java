@@ -10,8 +10,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
 import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity implements  NavigationView.OnNavigationItemSelectedListener{
@@ -34,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
   /*      if(savedInstanceState == null){
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MessageFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new SelectDoorFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_message);
         }
 */
@@ -48,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         int id= item.getItemId();
 
         if(id ==R.id.nav_selectdoor) {
-            fragment = new MessageFragment();
+            fragment = new SelectDoorFragment();
         } else if (id == R.id.nav_profile){
             fragment = new ProfileFragment();
         }
@@ -64,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         switch(item.getItemId()){
 
             case R.id.nav_message:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MessageFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new SelectDoorFragment()).commit();
                 break;
 
         }
