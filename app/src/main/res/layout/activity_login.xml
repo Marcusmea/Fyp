@@ -9,12 +9,13 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="95dp"
-        android:layout_height="57dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="123dp"
+        android:layout_height="53dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="28dp"
-        android:text="Login"
+        android:layout_marginEnd="8dp"
+        android:text="LOGIN"
+        android:textAppearance="@style/TextAppearance.AppCompat"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,7 +45,9 @@
         android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="Password"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
+        android:visibility="visible"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,11 +59,10 @@
         android:layout_width="203dp"
         android:layout_height="65dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="56dp"
         android:layout_marginEnd="8dp"
         android:text="Keep me Logged in"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etPassword" />
 
@@ -81,8 +83,8 @@
 
     <info.hoang8f.widget.FButton
         android:id="@+id/btnLogin"
-        android:layout_width="152dp"
-        android:layout_height="61dp"
+        android:layout_width="194dp"
+        android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
@@ -105,24 +107,6 @@
         app:layout_constraintStart_toStartOf="@+id/btnLogin"
         app:layout_constraintTop_toTopOf="@+id/btnLogin"
         app:layout_constraintVertical_bias="1.0" />
-
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/lala"
-        android:layout_width="75dp"
-        android:layout_height="46dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:passwordToggleEnabled="true"
-        tools:layout_editor_absoluteY="217dp">
-
-        <android.support.design.widget.TextInputEditText
-            android:layout_width="118dp"
-            android:layout_height="match_parent"
-            android:hint="lala"
-            android:inputType="textPassword" />
-    </android.support.design.widget.TextInputLayout>
 
 
 </android.support.constraint.ConstraintLayout>

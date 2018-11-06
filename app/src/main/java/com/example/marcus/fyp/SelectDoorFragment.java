@@ -23,7 +23,7 @@ public class SelectDoorFragment extends Fragment {
         Button frontdoor= (Button) view.findViewById(R.id.frontdoor);
         Button masteroom= (Button) view.findViewById(R.id.masterroom);
         Button bedroom1=(Button)view.findViewById(R.id.bedroomdoor1);
-        Button bedroom2=(Button)view.findViewById(R.id.bedroomdoor2);
+
         frontdoor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,13 +47,7 @@ public class SelectDoorFragment extends Fragment {
                 startActivity(in);
             }
         });
-        bedroom2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent in= new Intent(getActivity(),BedDoor2Activity.class);
-                startActivity(in);
-            }
-        });
+
 
         return view;
 

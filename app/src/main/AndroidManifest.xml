@@ -14,6 +14,7 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.VIEW"/>
             </intent-filter>
         </activity>
         <activity android:name=".RegisterActivity" />
@@ -24,7 +25,6 @@
         <activity android:name=".FrontDoorActivity" />
         <activity android:name=".MasterRoomActivity" />
         <activity android:name=".BedDoor1Activity" />
-        <activity android:name=".BedDoor2Activity" />
         <activity android:name=".MainDoor"></activity>
     </application>
 

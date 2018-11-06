@@ -24,6 +24,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
 import com.google.firebase.database.ValueEventListener;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
@@ -46,10 +47,12 @@ public class LoginActivity extends AppCompatActivity implements TextWatcher,
     private static final String KEY_PASS= "Password";
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
 
         sharedPreferences= getSharedPreferences(PREF_NAME,Context.MODE_PRIVATE);
         editor= sharedPreferences.edit();
@@ -97,12 +100,18 @@ public class LoginActivity extends AppCompatActivity implements TextWatcher,
                             if (user.getPassword().equals(userpassword.getText().toString())) {
                                 Intent goToHome = new Intent(LoginActivity.this, HomePageActivity.class);
                                 startActivity(goToHome);
-                                Toast.makeText(LoginActivity.this, "Log in successfully!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginActivity.this, "Login successfully!", Toast.LENGTH_SHORT).show();
+                                loginProgress.setVisibility(View.INVISIBLE);
+                                Login.setVisibility(View.VISIBLE);
                             } else {
                                 Toast.makeText(LoginActivity.this, "You have entered wrong password!! ", Toast.LENGTH_SHORT).show();
+                                loginProgress.setVisibility(View.INVISIBLE);
+                                Login.setVisibility(View.VISIBLE);
                             }
                         }else{
                             Toast.makeText(LoginActivity.this, "User do not exist!", Toast.LENGTH_SHORT).show();
+                            loginProgress.setVisibility(View.INVISIBLE);
+                            Login.setVisibility(View.VISIBLE);
                         }
 
                     }

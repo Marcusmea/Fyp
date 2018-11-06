@@ -27,10 +27,10 @@
             android:textAlignment="center"
             android:textSize="36sp" />
 
-        <Button
+        <info.hoang8f.widget.FButton
             android:id="@+id/frontdoor"
-            android:layout_width="139dp"
-            android:layout_height="54dp"
+            android:layout_width="158dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="120dp"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="50dp"
@@ -40,23 +40,23 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
-        <Button
+        <info.hoang8f.widget.FButton
             android:id="@+id/masterroom"
-            android:layout_width="134dp"
-            android:layout_height="46dp"
-            android:layout_marginEnd="50dp"
+            android:layout_width="158dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="120dp"
             android:layout_marginTop="30dp"
+            android:layout_marginEnd="50dp"
             android:text="Master Room"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.439"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/frontdoor" />
 
-        <Button
+        <info.hoang8f.widget.FButton
             android:id="@+id/bedroomdoor1"
-            android:layout_width="135dp"
-            android:layout_height="47dp"
+            android:layout_width="158dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="120dp"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="50dp"
@@ -65,19 +65,6 @@
             app:layout_constraintHorizontal_bias="0.44"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/backdoor" />
-
-        <Button
-            android:id="@+id/bedroomdoor2"
-            android:layout_width="138dp"
-            android:layout_height="46dp"
-            android:layout_marginStart="120dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="50dp"
-            android:text="BedRoom Door 2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.444"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/masterroom" />
 
         <FrameLayout
             android:id="@+id/fragment_container"

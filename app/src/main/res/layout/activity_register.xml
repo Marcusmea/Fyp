@@ -80,7 +80,6 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:layout_weight="1"
-        android:onClick="OnRegister"
         android:text="Register"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.372"
@@ -89,16 +88,16 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="198dp"
-        android:layout_height="51dp"
+        android:layout_width="268dp"
+        android:layout_height="47dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        android:text="Registration"
+        android:text="REGISTRATION"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

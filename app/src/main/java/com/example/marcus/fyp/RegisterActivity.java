@@ -2,16 +2,18 @@ package com.example.marcus.fyp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
+import com.basgeekball.awesomevalidation.AwesomeValidation;
+import com.basgeekball.awesomevalidation.ValidationStyle;
+import com.basgeekball.awesomevalidation.utility.RegexTemplate;
 import com.example.marcus.fyp.Model.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -26,12 +28,14 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText userid, userpassword, etPhone ,useremail, SeriesNo;
             private Button regButton;
             private TextView userlogin;
+            AwesomeValidation awesomeValidation;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        setupUIViews();
+        awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
 
 
        /* final EditText etName = (EditText) findViewById(R.id.etName);
@@ -41,8 +45,6 @@ public class RegisterActivity extends AppCompatActivity {
         final Button bRegister =(Button) findViewById(R.id.bRegister);
 
        */
-    }
-       private void setupUIViews(){
 
            userid =(MaterialEditText) findViewById(R.id.etUserID);
            userpassword=(MaterialEditText) findViewById(R.id.etPassword);
@@ -52,38 +54,60 @@ public class RegisterActivity extends AppCompatActivity {
            regButton= (Button) findViewById(R.id.btnRegister);
            userlogin=(TextView) findViewById(R.id.tvUserLogin);
 
-           final FirebaseDatabase database=FirebaseDatabase.getInstance();
-           final DatabaseReference table_user = database.getReference("User");
+           String regexPassword= "(?=.*[a-z])(?=.*[a-z])(?=.*[\\S+$]).{6,}";
+          // String regexseriesno= "([0-9])";
+
+           awesomeValidation.addValidation(RegisterActivity.this,R.id.etUserID,"[a-zA-Z\\s[0-9]]+", R.string.etUserID);
+           awesomeValidation.addValidation(RegisterActivity.this,R.id.etPassword,regexPassword, R.string.etPassword);
+           awesomeValidation.addValidation(RegisterActivity.this,R.id.etPhone,RegexTemplate.TELEPHONE, R.string.etPhone);
+           awesomeValidation.addValidation(RegisterActivity.this,R.id.etEmail,Patterns.EMAIL_ADDRESS,R.string.etEmail);
+           awesomeValidation.addValidation(RegisterActivity.this,R.id.seriesno,RegexTemplate.TELEPHONE,R.string.seriesno);
+
+
+        final FirebaseDatabase database=FirebaseDatabase.getInstance();
+        final DatabaseReference table_user = database.getReference("User");
 
 
            regButton.setOnClickListener(new View.OnClickListener() {
                @Override
                public void onClick(View v) {
-                   table_user.addValueEventListener(new ValueEventListener() {
-                       @Override
-                       public void onDataChange(DataSnapshot dataSnapshot) {
-                           if (dataSnapshot.child(userid.getText().toString()).exists()) {
-                               Intent goToWelcome = new Intent(RegisterActivity.this, welcome_page.class);
-                               startActivity(goToWelcome);
-                               Toast.makeText(RegisterActivity.this, "User already registered !", Toast.LENGTH_SHORT).show();
+                   if(awesomeValidation.validate()) {
+                       table_user.addValueEventListener(new ValueEventListener() {
+
+                           Boolean userInserted = false;
+
+                           @Override
+                           public void onDataChange(DataSnapshot dataSnapshot) {
+                               // awesomeValidation.validate();
+                               if (dataSnapshot.child(userid.getText().toString()).exists()) {
+
+                                   if (userInserted) {
+                                       Toast.makeText(RegisterActivity.this, "Register Successfully !", Toast.LENGTH_SHORT).show();
+                                   } else {
+                                       Toast.makeText(RegisterActivity.this, "User already registered !", Toast.LENGTH_SHORT).show();
+                                   }
+                                   finish();
+                                   //Intent goToWelcome = new Intent(RegisterActivity.this, welcome_page.class);
+                                   //startActivity(goToWelcome);
+                               } else { //get user
+                                   User user = new User(userpassword.getText().toString(), useremail.getText().toString(),etPhone.getText().toString(),SeriesNo.getText().toString());
+                                   userInserted = true;
+                                   table_user.child(userid.getText().toString()).setValue(user);
+                                   finish();
+
+                                   //Intent goToWelcome = new Intent(RegisterActivity.this, welcome_page.class);
+                                   //startActivity(goToWelcome);
+                               }
                            }
-                           //get user
-                       else {
-                               User user = new User(userpassword.getText().toString(), useremail.getText().toString(),etPhone.getText().toString(),SeriesNo.getText().toString());
-                               table_user.child(userid.getText().toString()).setValue(user);
-                               Intent goToWelcome = new Intent(RegisterActivity.this, welcome_page.class);
-                               startActivity(goToWelcome);
-                               Toast.makeText(RegisterActivity.this, "Register Successfully !", Toast.LENGTH_SHORT).show();
-                               finish();
+
+                           @Override
+                           public void onCancelled(DatabaseError databaseError) {
+
                            }
-                       }
-
-                       @Override
-                       public void onCancelled(DatabaseError databaseError) {
-
-                       }
-                   });
-
+                       });
+                   } else {
+                       Toast.makeText(RegisterActivity.this, "Validation Failed !", Toast.LENGTH_SHORT).show();
+                   }
                }
            });
 

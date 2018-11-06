@@ -1,8 +1,16 @@
 <resources>
-    <string name="app_name">Fyp</string>
+    <string name="app_name">Remote Keyless System</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="title_activity_front_door">FrontDoorActivity</string>
-    <string name="title_activity_frontdoor">Frontdoor</string>
+
+
+    <string name="etUserID">Enter your User ID</string>
+    <string name="etPassword">Password must be at least 6</string>
+    <string name="etPhone">Enter your phone number</string>
+    <string name="etEmail">Enter your E-mail</string>
+    <string name="seriesno">Enter your product series NO.</string>
+
+
 </resources>
