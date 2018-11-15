@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".welcome_page">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,14 +21,17 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".HomePageActivity" />
         <activity android:name=".SelectDoor" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".welcome_page" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".FrontDoorActivity" />
         <activity android:name=".MasterRoomActivity" />
         <activity android:name=".BedDoor1Activity" />
         <activity android:name=".MainDoor" />
         <activity android:name=".Notification" />
-        <activity android:name=".NotifyService_testing"></activity>
+
+
+
+
     </application>
 
 </manifest>

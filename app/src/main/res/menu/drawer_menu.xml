@@ -6,9 +6,9 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_message"
-            android:icon="@drawable/ic_message"
-            android:title="Message" />
+            android:id="@+id/nav_editprofile"
+            android:icon="@drawable/editprofile1"
+            android:title="Update Profile" />
         <item
             android:id="@+id/nav_profile"
             android:icon="@drawable/ic_profile"

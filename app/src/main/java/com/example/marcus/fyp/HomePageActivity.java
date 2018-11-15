@@ -52,11 +52,14 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
 
         if(id ==R.id.nav_selectdoor) {
             fragment = new SelectDoorFragment();
-        } else if (id == R.id.nav_profile){
+        } else if (id == R.id.nav_profile) {
             fragment = new ProfileFragment();
         } else if (id == R.id.nav_contactus){
             fragment= new ContactusFragment();
         }
+        //else if (id==R.id.nav_editprofile){
+           // fragment = new UpdateProfileFragment();
+
 
         if(fragment != null){
             FragmentManager fragmentManager = getSupportFragmentManager();
