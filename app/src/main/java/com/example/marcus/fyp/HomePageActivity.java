@@ -1,5 +1,6 @@
 package com.example.marcus.fyp;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -41,6 +42,9 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
         ft.add(R.id.fragment_container, fragment);
 
         ft.commit();
+
+        Intent intent123=new Intent(this, IService.class);
+        this.startService(intent123);
     }
 
 

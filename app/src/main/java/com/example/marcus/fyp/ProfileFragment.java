@@ -28,7 +28,7 @@ import java.util.List;
 public class ProfileFragment extends  Fragment {
 
     private TextView profileemail, profilePhone, profileSeries;
-   // DatabaseReference databaseUser;
+    DatabaseReference databaseUser;
     //ListView listViewUser;
    // List<User> userList;
 
@@ -40,22 +40,30 @@ public class ProfileFragment extends  Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        //TextView profileUser = (TextView) view.findViewById(R.id.tvProfileUserID);
+        final TextView profileUser = (TextView) view.findViewById(R.id.tvProfileUserID);
         final TextView profileemail = (TextView) view.findViewById(R.id.tvProfileEmail);
         final TextView profilePhone = (TextView) view.findViewById(R.id.tvProfilephone);
         final TextView profileSeries = (TextView) view.findViewById(R.id.tvProfileseries);
 
-        //databaseUser = FirebaseDatabase.getInstance().getReference("User");
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference table_user = database.getReference("User");
 
-        table_user.addValueEventListener(new ValueEventListener() {
+       // final FirebaseDatabase database = FirebaseDatabase.getInstance();
+       // DatabaseReference table_user = database.getReference("User");
+        databaseUser= FirebaseDatabase.getInstance().getReference("User");
+
+        databaseUser.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                User user = dataSnapshot.getValue(User.class);
+                for(DataSnapshot userSnapshot:dataSnapshot.getChildren()){
+                    User user= userSnapshot.getValue(User.class);
+                  //  profileUser.setText().;
+                    profileemail.setText("Email: "+user.getEmail());
+                    profilePhone.setText("Phone Number: "+ user.getPhoneNumber());
+                    profileSeries.setText("Series NO: " + user.getseriesNO());
 
-                profilePhone.setText("Phone Number: " + user.getPhoneNumber());
-                profileSeries.setText("Series NO: " + user.getseriesNO());
+
+                }
+
+
             }
 
             @Override
@@ -65,6 +73,8 @@ public class ProfileFragment extends  Fragment {
         });
         return view;
     }
+
+
 
 }
 

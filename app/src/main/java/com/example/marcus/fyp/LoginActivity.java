@@ -54,6 +54,8 @@ public class LoginActivity extends AppCompatActivity implements TextWatcher,
         setContentView(R.layout.activity_login);
 
 
+
+
         sharedPreferences= getSharedPreferences(PREF_NAME,Context.MODE_PRIVATE);
         editor= sharedPreferences.edit();
         rem_userpass= (CheckBox) findViewById(R.id.checkBox);
@@ -124,6 +126,8 @@ public class LoginActivity extends AppCompatActivity implements TextWatcher,
 
             }
         });
+
+
 
     }
 

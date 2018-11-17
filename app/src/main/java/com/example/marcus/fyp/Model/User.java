@@ -1,28 +1,29 @@
 package com.example.marcus.fyp.Model;
 
 public class User {
-    private String Password;
+    private String Password1;
     private String Email;
     private String phoneNumber;
     private String SeriesNO;
 
-    public User() {
-    }
+   public User(){
+
+   }
 
     public User(String password, String email, String PhoneNumber, String seriesNo) {
 
-        Password = password;
+        Password1 = password;
         Email = email;
         phoneNumber=PhoneNumber;
         SeriesNO=seriesNo;
     }
 
     public String getPassword() {
-        return Password;
+        return Password1;
     }
 
     public void setPassword(String password) {
-        Password = password;
+        Password1 = password;
     }
 
     public String getEmail() {
@@ -45,8 +46,8 @@ public class User {
         return SeriesNO;
     }
 
-    public void setseriesNO(String SeriesNO) {
-        this.SeriesNO = SeriesNO;
+    public void setseriesNO(String seriesNO) {
+        this.SeriesNO = seriesNO;
     }
 }
 
