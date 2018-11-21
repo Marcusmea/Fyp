@@ -61,8 +61,9 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
         } else if (id == R.id.nav_contactus){
             fragment= new ContactusFragment();
         }
-        //else if (id==R.id.nav_editprofile){
-           // fragment = new UpdateProfileFragment();
+        else if (id==R.id.nav_editprofile) {
+            fragment = new UpdateProfileFragment();
+        }
 
 
         if(fragment != null){

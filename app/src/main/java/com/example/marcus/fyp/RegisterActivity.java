@@ -37,25 +37,16 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
 
-
-       /* final EditText etName = (EditText) findViewById(R.id.etName);
-        final EditText etUserID =(EditText) findViewById(R.id.etUserID);
-        final EditText etPassword =(EditText) findViewById(R.id.etPassword);
-        final EditText etCPassword =(EditText) findViewById(R.id.etCPassword);
-        final Button bRegister =(Button) findViewById(R.id.bRegister);
-
-       */
-
            userid =(MaterialEditText) findViewById(R.id.etUserID);
            userpassword=(MaterialEditText) findViewById(R.id.etPassword);
            etPhone= (MaterialEditText)findViewById(R.id.etPhone);
            useremail=(MaterialEditText) findViewById(R.id.etEmail);
            SeriesNo=(MaterialEditText) findViewById(R.id.seriesno);
-           regButton= (Button) findViewById(R.id.btnRegister);
-           userlogin=(TextView) findViewById(R.id.tvUserLogin);
+           regButton= findViewById(R.id.btnRegister);
+           userlogin= findViewById(R.id.tvUserLogin);
 
            String regexPassword= "(?=.*[a-z])(?=.*[a-z])(?=.*[\\S+$]).{6,}";
-          // String regexseriesno= "([0-9])";
+
 
            awesomeValidation.addValidation(RegisterActivity.this,R.id.etUserID,"[a-zA-Z\\s[0-9]]+", R.string.etUserID);
            awesomeValidation.addValidation(RegisterActivity.this,R.id.etPassword,regexPassword, R.string.etPassword);
@@ -73,12 +64,10 @@ public class RegisterActivity extends AppCompatActivity {
                public void onClick(View v) {
                    if(awesomeValidation.validate()) {
                        table_user.addValueEventListener(new ValueEventListener() {
-
                            Boolean userInserted = false;
-
                            @Override
                            public void onDataChange(DataSnapshot dataSnapshot) {
-                               // awesomeValidation.validate();
+
                                if (dataSnapshot.child(userid.getText().toString()).exists()) {
 
                                    if (userInserted) {
@@ -87,19 +76,13 @@ public class RegisterActivity extends AppCompatActivity {
                                        Toast.makeText(RegisterActivity.this, "User already registered !", Toast.LENGTH_SHORT).show();
                                    }
                                    finish();
-                                   //Intent goToWelcome = new Intent(RegisterActivity.this, welcome_page.class);
-                                   //startActivity(goToWelcome);
-                               } else { //get user
+                               } else {
                                    User user = new User(userpassword.getText().toString(), useremail.getText().toString(),etPhone.getText().toString(),SeriesNo.getText().toString());
                                    userInserted = true;
                                    table_user.child(userid.getText().toString()).setValue(user);
                                    finish();
-
-                                   //Intent goToWelcome = new Intent(RegisterActivity.this, welcome_page.class);
-                                   //startActivity(goToWelcome);
                                }
                            }
-
                            @Override
                            public void onCancelled(DatabaseError databaseError) {
 

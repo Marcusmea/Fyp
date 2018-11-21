@@ -8,7 +8,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.google.firebase.database.DataSnapshot;
@@ -19,9 +21,9 @@ import com.google.firebase.database.ValueEventListener;
 
 public class MasterRoomActivity extends AppCompatActivity {
 
-
-    private Button unlock;
-    private Button lock;
+    int [] image = new int[] {R.drawable.lock , R.drawable.unlock};
+    ImageView lockmasterroom;
+    int a = 0;
     TextView mValueView;
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     DatabaseReference refHome = firebaseDatabase.getReference("Home");
@@ -36,24 +38,10 @@ public class MasterRoomActivity extends AppCompatActivity {
         refMasterDoor = refHome.child("MasterDoor");
         refMastermotor = refMasterDoor.child("motor");
 
-        TextView textstatus;
-        ToggleButton toggleButton;
-        toggleButton = (ToggleButton) findViewById(R.id.toggleButton);
-        toggleButton.setTextOff("Switch On");
-        toggleButton.setTextOn("Switch Off");
+        mValueView = (TextView) findViewById(R.id.mastervalueview);
+        lockmasterroom = (ImageView) findViewById(R.id.imageViewMaster);
 
-        //unlock = (Button) findViewById(R.id.unlockbut2);
-        //lock = (Button) findViewById(R.id.lockbut2);
-
-       // controlUnlock(refDoor, unlock);
-       // controlLock(refDoor, lock);
-       // controlled(refLight,toggleButton);
-        controlmasterdoor(refMastermotor, toggleButton);
-       // textstatus = (TextView) findViewById(R.id.status);
-        mValueView = (TextView) findViewById(R.id.fdvalueview);
-       // buttonstatus(refLight, textstatus);
-
-        database.child("Vibrate Master").addValueEventListener(new ValueEventListener() {
+        database.child("VibrateMaster").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot noteDataSnapshot : dataSnapshot.getChildren()) {
@@ -61,11 +49,87 @@ public class MasterRoomActivity extends AppCompatActivity {
                     mValueView.setText(value);
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
+
+
+        final Button lock = findViewById(R.id.lockbut2);
+        lock.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                refMastermotor.setValue(false);
+                Toast.makeText(MasterRoomActivity.this, "Door is Closed ! ", Toast.LENGTH_SHORT).show();
+                lockmasterroom.setImageResource(image[a]);
+                if (a < 1)
+                    a++;
+            }
+        });
+
+        final Button unlock = findViewById(R.id.unlockbut2);
+        unlock.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                refMastermotor.setValue(true);
+                Toast.makeText(MasterRoomActivity.this, "Door is Opened ! ", Toast.LENGTH_SHORT).show();
+                lockmasterroom.setImageResource(image[a]);
+                if (a > 0)
+                    a--;
+            }
+        });
+
+        /**
+        refMastermotor.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                final Boolean status_door = (Boolean) dataSnapshot.getValue();
+
+                unlock.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (status_door == true) {
+                            refMastermotor.setValue("True");
+                            Toast.makeText(MasterRoomActivity.this, "Door is Opened ! ", Toast.LENGTH_SHORT).show();
+                            lockmasterroom.setImageResource(image[a]);
+                            if (a >= 0)
+                                a--;
+                        } else{ (status_door==false) {
+                            refMastermotor.setValue("False");
+
+
+                        }
+
+                        }
+                    }
+
+
+                });
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
+
+    private void buttonstatus(final DatabaseReference button_a, final TextView textbuttonstatus){
+        button_a.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Boolean button_status=(Boolean)dataSnapshot.getValue();
+                textbuttonstatus.setText(button_status.toString());
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+/**
 
     private void controlmasterdoor(final DatabaseReference refmotor1,final ToggleButton togggle_btnmaster){
         togggle_btnmaster.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -102,22 +166,6 @@ public class MasterRoomActivity extends AppCompatActivity {
             }
         });
 */
-        private void buttonstatus(final DatabaseReference button_a, final TextView textbuttonstatus){
-        button_a.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Boolean button_status=(Boolean)dataSnapshot.getValue();
-                textbuttonstatus.setText(button_status.toString());
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
     }
-    public void jumpToNotificationMaster(View view){
-        Intent goToNotificationMaster = new Intent(this,NotificationMasterRoom.class);
-        startActivity(goToNotificationMaster);
-    }
+
 }

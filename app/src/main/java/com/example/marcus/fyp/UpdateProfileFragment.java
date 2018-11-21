@@ -8,12 +8,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
+import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
-
 
 import com.example.marcus.fyp.Model.User;
 import com.google.firebase.database.DataSnapshot;
@@ -22,10 +19,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class ProfileFragment extends  Fragment {
+public class UpdateProfileFragment extends  Fragment {
 
     private TextView profileemail, profilePhone, profileSeries;
     DatabaseReference databaseUser;
@@ -40,11 +34,12 @@ public class ProfileFragment extends  Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        final TextView profileUser = (TextView) view.findViewById(R.id.tvProfileUserID);
-        final TextView profileemail = (TextView) view.findViewById(R.id.tvProfileEmail);
-        final TextView profilePhone = (TextView) view.findViewById(R.id.tvProfilephone);
-        final TextView profileSeries = (TextView) view.findViewById(R.id.tvProfileseries);
-
+        final EditText profileUser = view.findViewById(R.id.tvProfileUserID);
+        final EditText profileEmail = view.findViewById(R.id.tvProfileEmailUpdate);
+        final EditText profilePhone = view.findViewById(R.id.tvProfilePhoneUpdate);
+        final EditText profilePassword = view.findViewById(R.id.tvProfilePasswordUpdate);
+        final EditText profileSeries = view.findViewById(R.id.tvProfileSeriesUpdate);
+        final Button updateButton = view.findViewById(R.id.updateButton);
 
        // final FirebaseDatabase database = FirebaseDatabase.getInstance();
        // DatabaseReference table_user = database.getReference("User");
@@ -54,16 +49,21 @@ public class ProfileFragment extends  Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot userSnapshot:dataSnapshot.getChildren()){
-                    User user= userSnapshot.getValue(User.class);
-                    //profileUser.setText("User: "+ );
-                    profileemail.setText("Email: "+user.getEmail());
-                    profilePhone.setText("Phone Number: "+ user.getPhoneNumber());
-                    profileSeries.setText("Series NO: " + user.getseriesNO());
+                    final User user= userSnapshot.getValue(User.class);
+                  //  profileUser.setText().;
+                    profileEmail.setText(user.getEmail());
+                    profilePhone.setText(user.getPhoneNumber());
+                    profilePassword.setText(user.getPassword());
+                    profileSeries.setText(user.getseriesNO());
 
-
+                    updateButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            DatabaseReference emailRef = FirebaseDatabase.getInstance().getReference("User").child("email");
+                            emailRef.setValue(profileEmail);
+                        }
+                    });
                 }
-
-
             }
 
             @Override

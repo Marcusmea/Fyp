@@ -19,9 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".HomePageActivity" >
-
-        </activity>
+        <activity android:name=".HomePageActivity" />
         <activity android:name=".SelectDoor" />
         <activity android:name=".MainActivity" />
         <activity android:name=".LoginActivity" />
